@@ -23,17 +23,17 @@ namespace GeoLib.Data.Repositories
 
         public State Get(string abbrev)
         {
-            using (GeoLibDbContext entityContext = new GeoLibDbContext())
+            using (GeoLibDbContext geoLibDbContext = new GeoLibDbContext())
             {
-                return entityContext.StateSet.FirstOrDefault(e => string.Equals(e.Abbreviation, abbrev, StringComparison.CurrentCultureIgnoreCase));
+                return geoLibDbContext.StateSet.FirstOrDefault(e => string.Equals(e.Abbreviation, abbrev, StringComparison.CurrentCultureIgnoreCase));
             }
         }
 
         public IEnumerable<State> Get(bool primaryOnly)
         {
-            using (GeoLibDbContext entityContext = new GeoLibDbContext())
+            using (GeoLibDbContext geoLibDbContext = new GeoLibDbContext())
             {
-                return entityContext.StateSet.Where(e => e.IsPrimaryState == primaryOnly).ToFullyLoaded();
+                return geoLibDbContext.StateSet.Where(e => e.IsPrimaryState == primaryOnly).ToFullyLoaded();
             }
         }
     }

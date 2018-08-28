@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoLib.Core", "GeoLib.Core\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoLib.Data", "GeoLib.Data\GeoLib.Data.csproj", "{8D22C1D6-DE56-4AEF-84AE-4396CE07A761}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoLib.Contracts", "GeoLib.Contracts\GeoLib.Contracts.csproj", "{8509EE19-57B8-4A86-AD32-8072165B33BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoLib.Services", "GeoLib.Services\GeoLib.Services.csproj", "{2D12190D-7987-46B1-A191-5D8504629FB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoLib.Tests", "GeoLib.Tests\GeoLib.Tests.csproj", "{773B9ACF-DB28-4863-A579-405A82200654}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +27,18 @@ Global
 		{8D22C1D6-DE56-4AEF-84AE-4396CE07A761}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D22C1D6-DE56-4AEF-84AE-4396CE07A761}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D22C1D6-DE56-4AEF-84AE-4396CE07A761}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8509EE19-57B8-4A86-AD32-8072165B33BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8509EE19-57B8-4A86-AD32-8072165B33BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8509EE19-57B8-4A86-AD32-8072165B33BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8509EE19-57B8-4A86-AD32-8072165B33BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D12190D-7987-46B1-A191-5D8504629FB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D12190D-7987-46B1-A191-5D8504629FB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D12190D-7987-46B1-A191-5D8504629FB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D12190D-7987-46B1-A191-5D8504629FB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{773B9ACF-DB28-4863-A579-405A82200654}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{773B9ACF-DB28-4863-A579-405A82200654}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{773B9ACF-DB28-4863-A579-405A82200654}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{773B9ACF-DB28-4863-A579-405A82200654}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -32,9 +32,9 @@ namespace GeoLib.Data.Repositories
 
         public ZipCode GetByZip(string zip)
         {
-            using (GeoLibDbContext entityContext = new GeoLibDbContext())
+            using (GeoLibDbContext geoLibDbContext = new GeoLibDbContext())
             {
-                return entityContext.ZipCodeSet
+                return geoLibDbContext.ZipCodeSet
                     .Include(e => e.State)
                     .FirstOrDefault(e => e.Zip == zip);
             }
@@ -42,9 +42,9 @@ namespace GeoLib.Data.Repositories
 
         public IEnumerable<ZipCode> GetByState(string state)
         {
-            using (GeoLibDbContext entityContext = new GeoLibDbContext())
+            using (GeoLibDbContext geoLibDbContext = new GeoLibDbContext())
             {
-                return entityContext.ZipCodeSet
+                return geoLibDbContext.ZipCodeSet
                     .Include(e => e.State)
                     .Where(e => e.State.Abbreviation == state).ToFullyLoaded();
             }
@@ -52,11 +52,11 @@ namespace GeoLib.Data.Repositories
 
         public IEnumerable<ZipCode> GetZipsForRange(ZipCode zip, int range)
         {
-            using (GeoLibDbContext entityContext = new GeoLibDbContext())
+            using (GeoLibDbContext geoLibDbContext = new GeoLibDbContext())
             {
                 double degrees = range / 69.047;
 
-                return entityContext.ZipCodeSet
+                return geoLibDbContext.ZipCodeSet
                     .Include(e => e.State)
                     // ReSharper disable once ArrangeRedundantParentheses
                     .Where(e => (e.Latitude <= zip.Latitude + degrees && e.Latitude >= zip.Latitude - degrees) && e.Longitude <= zip.Longitude + degrees && e.Longitude >= zip.Longitude - degrees)
