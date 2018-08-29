@@ -6,8 +6,8 @@ namespace GeoLib.Data.RepositoryInterfaces
 {
     public interface IZipCodeRepository : IDataRepository<ZipCode>
     {
-        ZipCode GetByZip(string zip);
+        ZipCode GetByZipCode(string zip);
         IEnumerable<ZipCode> GetByState(string state);
-        IEnumerable<ZipCode> GetZipsForRange(ZipCode zip, int range);
+        IEnumerable<ZipCode> GetZipCodesForRange(ZipCode zip, int range);
     }
 }

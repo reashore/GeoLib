@@ -7,9 +7,9 @@ namespace GeoLib.Core
 {
     public static class SimpleMapper
     {
-        public static void PropertyMap<T, TU>(T source, TU destination)
-            where T : class, new()
-            where TU : class, new()
+        public static void PropertyMap<T1, T2>(T1 source, T2 destination)
+            where T1 : class, new()
+            where T2 : class, new()
         {
             List<PropertyInfo> sourceProperties = source.GetType().GetProperties().ToList();
             List<PropertyInfo> destinationProperties = destination.GetType().GetProperties().ToList();

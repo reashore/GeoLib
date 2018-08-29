@@ -20,7 +20,7 @@ namespace GeoLib.Core
 
         private IEnumerable<T> GetEntities(TU entityContext)
         {
-            return DbSet(entityContext).ToFullyLoaded();
+            return DbSet(entityContext).ToList();
         }
 
         private T GetEntity(TU entityContext, int id)
@@ -30,8 +30,8 @@ namespace GeoLib.Core
 
         private T UpdateEntity(TU entityContext, T entity)
         {
-            IQueryable<T> q = DbSet(entityContext).Where(IdentifierPredicate(entityContext, entity.EntityId));
-            return q.FirstOrDefault();
+            IQueryable<T> query = DbSet(entityContext).Where(IdentifierPredicate(entityContext, entity.EntityId));
+            return query.FirstOrDefault();
         }
 
         public virtual T Add(T entity)
@@ -79,13 +79,17 @@ namespace GeoLib.Core
         public virtual IEnumerable<T> Get()
         {
             using (TU entityContext = new TU())
+            {
                 return GetEntities(entityContext).ToArray().ToList();
+            }
         }
 
         public virtual T Get(int id)
         {
             using (TU entityContext = new TU())
+            {
                 return GetEntity(entityContext, id);
+            }
         }
     }
 }

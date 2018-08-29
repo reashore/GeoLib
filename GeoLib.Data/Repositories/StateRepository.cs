@@ -34,7 +34,7 @@ namespace GeoLib.Data.Repositories
         {
             using (GeoLibDbContext geoLibDbContext = new GeoLibDbContext())
             {
-                return geoLibDbContext.StateSet.Where(e => e.IsPrimaryState == primaryOnly).ToFullyLoaded();
+                return geoLibDbContext.StateSet.Where(e => e.IsPrimaryState == primaryOnly).ToList();
             }
         }
     }

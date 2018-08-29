@@ -25,18 +25,15 @@ namespace GeoLib.Data.Repositories
         {
             using (GeoLibDbContext entityContext = new GeoLibDbContext())
             {
-                return entityContext.ZipCodeSet
-                    .Include(e => e.State).ToFullyLoaded();
+                return entityContext.ZipCodeSet.Include(e => e.State).ToList();
             }
         }
 
-        public ZipCode GetByZip(string zip)
+        public ZipCode GetByZipCode(string zip)
         {
             using (GeoLibDbContext geoLibDbContext = new GeoLibDbContext())
             {
-                return geoLibDbContext.ZipCodeSet
-                    .Include(e => e.State)
-                    .FirstOrDefault(e => e.Zip == zip);
+                return geoLibDbContext.ZipCodeSet.Include(e => e.State).FirstOrDefault(e => e.Zip == zip);
             }
         }
 
@@ -46,11 +43,11 @@ namespace GeoLib.Data.Repositories
             {
                 return geoLibDbContext.ZipCodeSet
                     .Include(e => e.State)
-                    .Where(e => e.State.Abbreviation == state).ToFullyLoaded();
+                    .Where(e => e.State.Abbreviation == state).ToList(); 
             }
         }
 
-        public IEnumerable<ZipCode> GetZipsForRange(ZipCode zip, int range)
+        public IEnumerable<ZipCode> GetZipCodesForRange(ZipCode zip, int range)
         {
             using (GeoLibDbContext geoLibDbContext = new GeoLibDbContext())
             {
@@ -58,9 +55,9 @@ namespace GeoLib.Data.Repositories
 
                 return geoLibDbContext.ZipCodeSet
                     .Include(e => e.State)
-                    // ReSharper disable once ArrangeRedundantParentheses
-                    .Where(e => (e.Latitude <= zip.Latitude + degrees && e.Latitude >= zip.Latitude - degrees) && e.Longitude <= zip.Longitude + degrees && e.Longitude >= zip.Longitude - degrees)
-                    .ToFullyLoaded();
+                    .Where(e => zip.Latitude - degrees <= e.Latitude && e.Latitude <= zip.Latitude + degrees && 
+                                zip.Longitude - degrees <= e.Longitude && e.Longitude <= zip.Longitude + degrees)
+                    .ToList();
             }
         }
     }

@@ -51,7 +51,7 @@ namespace GeoLib.DataAccess.UI
                 Zip = "07035"
             };
             const int range = 10000;
-            IEnumerable<ZipCode> zipCodes3 = zipCodeRepository.GetZipsForRange(zipCode, range);
+            IEnumerable<ZipCode> zipCodes3 = zipCodeRepository.GetZipCodesForRange(zipCode, range);
             count = zipCodes3.Count();
             Console.WriteLine($"zipCodes3.Count() = {count}");
         }

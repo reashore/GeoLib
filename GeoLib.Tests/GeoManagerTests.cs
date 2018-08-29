@@ -21,7 +21,7 @@ namespace GeoLib.Tests
                 State = new State {Abbreviation = "NJ"},
                 Zip = "07035"
             };
-            zipCodeRepositoryMock.Setup(obj => obj.GetByZip("07035")).Returns(zipCode);
+            zipCodeRepositoryMock.Setup(obj => obj.GetByZipCode("07035")).Returns(zipCode);
             IGeoService geoService = new GeoManager(zipCodeRepositoryMock.Object);
 
             // Act
@@ -32,4 +32,6 @@ namespace GeoLib.Tests
             Assert.IsTrue(zipCodeData.State == "NJ");
         }
     }
+
+    // todo: write additional tests
 }

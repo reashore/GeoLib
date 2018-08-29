@@ -8,13 +8,22 @@ namespace GeoLib.ConsoleHost
     {
         public static void Main()
         {
-            ServiceHost geoManagerHost = new ServiceHost(typeof(GeoManager));
-            geoManagerHost.Open();
+            ServiceHost geoManagerHost = null;
+
+            try
+            {
+                geoManagerHost = new ServiceHost(typeof(GeoManager));
+                geoManagerHost.Open();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
 
             Console.WriteLine("Done");
             Console.ReadKey();
 
-            geoManagerHost.Close();
+            geoManagerHost?.Close();
         }
     }
 }

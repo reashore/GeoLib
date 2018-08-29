@@ -35,7 +35,7 @@ namespace GeoLib.Services
         {
             ZipCodeData zipCodeData = null;
             IZipCodeRepository zipCodeRepository = _zipCodeRepository ?? new ZipCodeRepository();
-            ZipCode zipCodeEntity = zipCodeRepository.GetByZip(zipCode);
+            ZipCode zipCodeEntity = zipCodeRepository.GetByZipCode(zipCode);
 
             if (zipCodeEntity != null)
             {
@@ -56,8 +56,10 @@ namespace GeoLib.Services
             IStateRepository stateRepository = _stateRepository ?? new StateRepository();
             IEnumerable<State> states = stateRepository.Get(isPrimaryOnly);
 
+            // ReSharper disable once InvertIf
             if (states != null)
             {
+                // ReSharper disable once LoopCanBeConvertedToQuery
                 foreach (State state in states)
                 {
                     stateData.Add(state.Abbreviation);
@@ -97,8 +99,8 @@ namespace GeoLib.Services
         {
             List<ZipCodeData> zipCodeData = new List<ZipCodeData>();
             IZipCodeRepository zipCodeRepository = _zipCodeRepository ?? new ZipCodeRepository();
-            ZipCode zipCodeEntity = zipCodeRepository.GetByZip(zipCode);
-            IEnumerable<ZipCode> zipCodes = zipCodeRepository.GetZipsForRange(zipCodeEntity, zipCodeRange);
+            ZipCode zipCodeEntity = zipCodeRepository.GetByZipCode(zipCode);
+            IEnumerable<ZipCode> zipCodes = zipCodeRepository.GetZipCodesForRange(zipCodeEntity, zipCodeRange);
 
             // ReSharper disable once InvertIf
             if (zipCodes != null)
