@@ -25,7 +25,8 @@ namespace GeoLib.Data.Repositories
         {
             using (GeoLibDbContext geoLibDbContext = new GeoLibDbContext())
             {
-                return geoLibDbContext.StateSet.FirstOrDefault(e => string.Equals(e.Abbreviation, abbrev, StringComparison.CurrentCultureIgnoreCase));
+                // ReSharper disable once SpecifyStringComparison
+                return geoLibDbContext.StateSet.FirstOrDefault(e => e.Abbreviation.ToLower() == abbrev.ToLower());
             }
         }
 
