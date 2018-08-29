@@ -8,6 +8,8 @@ namespace GeoLib.Services
 {
     public class GeoManager : IGeoService
     {
+        #region Constructors and Fields
+
         public GeoManager()
         {
         }
@@ -31,24 +33,7 @@ namespace GeoLib.Services
         private readonly IZipCodeRepository _zipCodeRepository;
         private readonly IStateRepository _stateRepository;
 
-        public ZipCodeData GetZipCodeInfo(string zipCode)
-        {
-            ZipCodeData zipCodeData = null;
-            IZipCodeRepository zipCodeRepository = _zipCodeRepository ?? new ZipCodeRepository();
-            ZipCode zipCodeEntity = zipCodeRepository.GetByZipCode(zipCode);
-
-            if (zipCodeEntity != null)
-            {
-                zipCodeData = new ZipCodeData
-                {
-                    City = zipCodeEntity.City,
-                    State = zipCodeEntity.State.Abbreviation,
-                    ZipCode = zipCodeEntity.Zip
-                };
-            }
-
-            return zipCodeData;
-        }
+        #endregion
 
         public IEnumerable<string> GetStates(bool isPrimaryOnly)
         {
@@ -67,6 +52,25 @@ namespace GeoLib.Services
             }
 
             return stateData;
+        }
+
+        public ZipCodeData GetZipCodeInfo(string zipCode)
+        {
+            ZipCodeData zipCodeData = null;
+            IZipCodeRepository zipCodeRepository = _zipCodeRepository ?? new ZipCodeRepository();
+            ZipCode zipCodeEntity = zipCodeRepository.GetByZipCode(zipCode);
+
+            if (zipCodeEntity != null)
+            {
+                zipCodeData = new ZipCodeData
+                {
+                    City = zipCodeEntity.City,
+                    State = zipCodeEntity.State.Abbreviation,
+                    ZipCode = zipCodeEntity.Zip
+                };
+            }
+
+            return zipCodeData;
         }
 
         public IEnumerable<ZipCodeData> GetZipCodes(string state)
