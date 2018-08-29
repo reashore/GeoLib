@@ -1,4 +1,7 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
 using System.Threading;
 using System.Windows;
 using GeoLib.Contracts;
@@ -15,7 +18,7 @@ namespace GeoLib.Client
             int managedThreadId = Thread.CurrentThread.ManagedThreadId;
             string currentProcessId = Process.GetCurrentProcess().Id.ToString();
 
-            this.Title = $"threadId = {managedThreadId}, processId = {currentProcessId}";
+            Title = $"Thread ID = {managedThreadId}, Process ID = {currentProcessId}";
         }
 
         private void GetZipCodeInfoButton_Click(object sender, RoutedEventArgs e)
@@ -23,13 +26,14 @@ namespace GeoLib.Client
             // ReSharper disable once InvertIf
             if (ZipCodeTextBox.Text != "")
             {
-                GeoClient geoClient = new GeoClient();
+                const string endpoint = "netTcpEndpoint";
+                GeoClient geoClient = new GeoClient(endpoint);
                 ZipCodeData zipCodeData = geoClient.GetZipCodeInfo(ZipCodeTextBox.Text);
 
                 if (zipCodeData != null)
                 {
-                    CityLabel.Content = zipCodeData.City;
-                    StateLabel.Content = zipCodeData.State;
+                    CityOutputLabel.Content = zipCodeData.City;
+                    StateOutputLabel.Content = zipCodeData.State;
                 }
 
                 geoClient.Close();
@@ -38,19 +42,32 @@ namespace GeoLib.Client
 
         private void GetZipCodesButton_Click(object sender, RoutedEventArgs e)
         {
+            // ReSharper disable once InvertIf
             if (StateTextBox.Text != "")
             {
-                GeoClient geoClient = new GeoClient();
+                EndpointAddress endpointAddress = new EndpointAddress("net.tcp://localhost:8009/GeoService");
+                Binding binding = new NetTcpBinding();
+                GeoClient geoClient = new GeoClient(binding, endpointAddress);
+                IEnumerable<ZipCodeData> zipCodeDataEnumerable = geoClient.GetZipCodes(StateTextBox.Text);
 
+                if (zipCodeDataEnumerable != null)
+                {
+                    ZipCodesListBox.ItemsSource = zipCodeDataEnumerable;
+                }
+                
                 geoClient.Close();
             }
         }
 
         private void MakeCallButton_Click(object sender, RoutedEventArgs e)
         {
+            // ReSharper disable once InvertIf
             if (MessageTextBox.Text != "")
             {
-                GeoClient geoClient = new GeoClient();
+                const string endpoint = "netTcpEndpoint";
+                GeoClient geoClient = new GeoClient(endpoint);
+
+
 
                 geoClient.Close();
             }
