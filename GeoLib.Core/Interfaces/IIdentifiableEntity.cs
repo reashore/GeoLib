@@ -1,4 +1,4 @@
-namespace GeoLib.Core
+namespace GeoLib.Core.Interfaces
 {
     public interface IIdentifiableEntity
     {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace GeoLib.Core
+namespace GeoLib.Core.Interfaces
 {
     public interface IDataRepository
     {

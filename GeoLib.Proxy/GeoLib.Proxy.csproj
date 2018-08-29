@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8D22C1D6-DE56-4AEF-84AE-4396CE07A761}</ProjectGuid>
+    <ProjectGuid>{F34BCCC9-2AA9-4149-8847-33A64BB2F266}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GeoLib.Data</RootNamespace>
-    <AssemblyName>GeoLib.Data</AssemblyName>
+    <RootNamespace>GeoLib.Proxy</RootNamespace>
+    <AssemblyName>GeoLib.Proxy</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,15 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,23 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\State.cs" />
-    <Compile Include="Entities\ZipCode.cs" />
-    <Compile Include="GeoLibDbContext.cs" />
+    <Compile Include="GeoClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\StateRepository.cs" />
-    <Compile Include="Repositories\ZipCodeRepository.cs" />
-    <Compile Include="Interfaces\IStateRepository.cs" />
-    <Compile Include="Interfaces\IZipCodeRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GeoLib.Core\GeoLib.Core.csproj">
-      <Project>{768e9fa0-6e24-4104-8a7e-b259ca82043a}</Project>
-      <Name>GeoLib.Core</Name>
+    <ProjectReference Include="..\GeoLib.Contracts\GeoLib.Contracts.csproj">
+      <Project>{8509ee19-57b8-4a86-ad32-8072165b33bf}</Project>
+      <Name>GeoLib.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

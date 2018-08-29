@@ -1,4 +1,5 @@
 ﻿using GeoLib.Core;
+using GeoLib.Core.Interfaces;
 
 namespace GeoLib.Data.Entities
 {
