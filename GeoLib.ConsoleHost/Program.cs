@@ -20,7 +20,7 @@ namespace GeoLib.ConsoleHost
                 Console.WriteLine(exception);
             }
 
-            Console.WriteLine("Done");
+            Console.WriteLine("Service started. Press any key to exit.");
             Console.ReadKey();
 
             geoManagerHost?.Close();
