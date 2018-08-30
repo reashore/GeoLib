@@ -1,5 +1,4 @@
-﻿using GeoLib.Core;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using GeoLib.Core.Interfaces;
 using GeoLib.Data.Entities;

@@ -1,8 +1,6 @@
-using GeoLib.Contracts;
 using GeoLib.Services;
 using System;
 using System.ServiceModel;
-using System.ServiceModel.Channels;
 
 namespace GeoLib.ConsoleHost
 {
