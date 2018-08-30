@@ -58,15 +58,5 @@ namespace GeoLib.Client
                 geoClient.Close();
             }
         }
-
-        private void MakeCallButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Note that the ChannelFactory constructor argument must be an empty string and not void
-            ChannelFactory<IMessageService> channelFactory = new ChannelFactory<IMessageService>("");
-            IMessageService messageService = channelFactory.CreateChannel();
-
-            messageService.ShowMessage(MessageTextBox.Text);
-            channelFactory.Close();
-        }
     }
 }

@@ -9,6 +9,5 @@
     <StackPanel Orientation="Vertical">
         <Button x:Name="StartButton" Content="Start WCF Services" Margin="50,20,50,0" FontSize="18" Click="StartButton_Click"/>
         <Button x:Name="StopButton" Content="Stop WCF Services" Margin="50,20,50,0" FontSize="18" Click="StopButton_Click"/>
-        <Label x:Name="MessageLabel" Content="" Margin="50,20,49.6,0" HorizontalAlignment="Center" Width="294"/>
     </StackPanel>
 </Window>
