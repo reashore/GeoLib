@@ -61,16 +61,12 @@ namespace GeoLib.Client
 
         private void MakeCallButton_Click(object sender, RoutedEventArgs e)
         {
-            // ReSharper disable once InvertIf
-            if (MessageTextBox.Text != "")
-            {
-                const string endpoint = "netTcpEndpoint";
-                GeoClient geoClient = new GeoClient(endpoint);
+            // Note that the ChannelFactory constructor argument must be an empty string and not void
+            ChannelFactory<IMessageService> channelFactory = new ChannelFactory<IMessageService>("");
+            IMessageService messageService = channelFactory.CreateChannel();
 
-
-
-                geoClient.Close();
-            }
+            messageService.ShowMessage(MessageTextBox.Text);
+            channelFactory.Close();
         }
     }
 }
