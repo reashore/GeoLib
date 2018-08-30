@@ -1,12 +1,13 @@
 using GeoLib.Data.Repositories;
-using GeoLib.Data.RepositoryInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using GeoLib.Data.Entities;
+using GeoLib.Data.Interfaces;
 
 namespace GeoLib.DataAccess.UI
 {
+    // ReSharper disable once ClassNeverInstantiated.Global
     public class Program
     {
         public static void Main()

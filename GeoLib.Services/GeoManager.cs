@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using GeoLib.Contracts;
 using GeoLib.Data.Entities;
+using GeoLib.Data.Interfaces;
 using GeoLib.Data.Repositories;
-using GeoLib.Data.RepositoryInterfaces;
 
 namespace GeoLib.Services
 {

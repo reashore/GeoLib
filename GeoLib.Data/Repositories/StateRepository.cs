@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using GeoLib.Core;
 using GeoLib.Data.Entities;
-using GeoLib.Data.RepositoryInterfaces;
+using GeoLib.Data.Interfaces;
 
 namespace GeoLib.Data.Repositories
 {

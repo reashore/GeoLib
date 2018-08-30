@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using GeoLib.Core.Interfaces;
 using GeoLib.Data.Entities;
 
-namespace GeoLib.Data.RepositoryInterfaces
+namespace GeoLib.Data.Interfaces
 {
     public interface IZipCodeRepository : IDataRepository<ZipCode>
     {

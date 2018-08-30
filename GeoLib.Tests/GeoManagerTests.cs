@@ -1,6 +1,6 @@
 ﻿using GeoLib.Contracts;
 using GeoLib.Data.Entities;
-using GeoLib.Data.RepositoryInterfaces;
+using GeoLib.Data.Interfaces;
 using GeoLib.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
