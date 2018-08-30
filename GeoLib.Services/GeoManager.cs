@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ServiceModel;
 using GeoLib.Contracts;
 using GeoLib.Data.Entities;
 using GeoLib.Data.Interfaces;
@@ -6,6 +7,7 @@ using GeoLib.Data.Repositories;
 
 namespace GeoLib.Services
 {
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     public class GeoManager : IGeoService
     {
         #region Constructors and Fields
