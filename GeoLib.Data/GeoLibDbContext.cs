@@ -8,7 +8,7 @@ namespace GeoLib.Data
     public class GeoLibDbContext : DbContext
     {
         public GeoLibDbContext()
-            : base("name=main")
+            : base("name=defaultConnectionString")
         {
             Database.SetInitializer<GeoLibDbContext>(null);
         }
