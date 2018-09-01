@@ -31,35 +31,13 @@ namespace GeoLib.Client
                 GeoClient geoClient = new GeoClient(endpoint);
                 ZipCodeData zipCodeData = geoClient.GetZipCodeInfo(ZipCodeTextBox.Text);
 
-                try
+                if (zipCodeData != null)
                 {
-                    if (zipCodeData != null)
-                    {
-                        CityOutputLabel.Content = zipCodeData.City;
-                        StateOutputLabel.Content = zipCodeData.State;
-                    }
-
-                    geoClient.Close();
-
+                    CityOutputLabel.Content = zipCodeData.City;
+                    StateOutputLabel.Content = zipCodeData.State;
                 }
-                catch (FaultException<ExceptionDetail> exception)
-                {
-                    string message = $"Type = {exception.GetType().Name} ";
-                    message += $"Message = {exception.Message} ";
-                    message += $"Proxy state = {geoClient.State.ToString()}";
 
-                    Console.WriteLine(message);
-                    Debug.WriteLine(message);
-                }
-                catch (Exception exception)
-                {
-                    string message = $"Type = {exception.GetType().Name} ";
-                    message += $"Message = {exception.Message} ";
-                    message += $"Proxy state = {geoClient.State.ToString()}";
-
-                    Console.WriteLine(message);
-                    Debug.WriteLine(message);
-                }
+                geoClient.Close();
             }
         }
 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
 using GeoLib.Contracts;
 using GeoLib.Data.Entities;
@@ -8,7 +7,7 @@ using GeoLib.Data.Repositories;
 
 namespace GeoLib.Services
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, IncludeExceptionDetailInFaults = true)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     public class GeoManager : IGeoService
     {
         #region Constructors and Fields
@@ -59,7 +58,7 @@ namespace GeoLib.Services
 
         public ZipCodeData GetZipCodeInfo(string zipCode)
         {
-            ZipCodeData zipCodeData;
+            ZipCodeData zipCodeData = null;
             IZipCodeRepository zipCodeRepository = _zipCodeRepository ?? new ZipCodeRepository();
             ZipCode zipCodeEntity = zipCodeRepository.GetByZipCode(zipCode);
 
@@ -71,11 +70,6 @@ namespace GeoLib.Services
                     State = zipCodeEntity.State.Abbreviation,
                     ZipCode = zipCodeEntity.Zip
                 };
-            }
-            else
-            {
-                throw new FaultException($"Zip code {zipCode} not found.");
-                //throw new Exception($"Zip code {zipCode} not found.");
             }
 
             return zipCodeData;
