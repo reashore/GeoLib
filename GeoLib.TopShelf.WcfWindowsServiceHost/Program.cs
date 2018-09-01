@@ -23,7 +23,7 @@ namespace GeoLib.TopShelf.WcfWindowsServiceHost
                 serviceConfiguration.SetDisplayName("GeoLib WCF Windows Service Host");
                 serviceConfiguration.SetDescription("GeoLib WCF Windows Service Host");
 
-                serviceConfiguration.StartAutomatically();
+                serviceConfiguration.StartManually();
             });
         }
     }
