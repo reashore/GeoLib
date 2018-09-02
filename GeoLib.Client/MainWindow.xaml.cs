@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
@@ -19,7 +18,7 @@ namespace GeoLib.Client
             int managedThreadId = Thread.CurrentThread.ManagedThreadId;
             string currentProcessId = Process.GetCurrentProcess().Id.ToString();
 
-            Title = $"Thread ID = {managedThreadId}, Process ID = {currentProcessId}";
+            Title = $"GeoLib WCF Client App: Thread ID = {managedThreadId}, Process ID = {currentProcessId}";
         }
 
         private void GetZipCodeInfoButton_Click(object sender, RoutedEventArgs e)
