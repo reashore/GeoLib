@@ -10,7 +10,8 @@
         <GroupBox Header="Binding Type" Margin="20">
             <StackPanel x:Name="BindingType"  Margin="15">
                 <RadioButton x:Name="NetTcpBindingRadioButton" Content="netTcpBinding" IsChecked="true" Margin="4" Checked="RadioButton_Checked" />
-                <RadioButton x:Name="HttpBindingRadioButton" Content="httpBinding" Margin="4" Checked="RadioButton_Checked" />
+                <RadioButton x:Name="HttpBindingRadioButton" Content="basicHttpBinding" Margin="4" Checked="RadioButton_Checked" />
+                <RadioButton x:Name="WsBindingRadioButton" Content="wsHttpBinding" Margin="4" Checked="RadioButton_Checked" />
             </StackPanel>
         </GroupBox>
         <Label x:Name="ZipCodeLabel" Content="Zip Code:" HorizontalAlignment="Left" Margin="98,61,0,0" VerticalAlignment="Top" Width="61" RenderTransformOrigin="1.485,0.585"/>

@@ -8,6 +8,13 @@ using GeoLib.Proxy;
 
 namespace GeoLib.Client
 {
+    public enum WcfBindingType
+    {
+        NetTcpBinding,
+        BasicHttpBinding,
+        WsHttpBinding
+    }
+
     public partial class MainWindow
     {
         public MainWindow()
@@ -20,7 +27,7 @@ namespace GeoLib.Client
             Title = $"GeoLib WCF Client App: Thread ID = {managedThreadId}, Process ID = {currentProcessId}";
         }
 
-        private bool _isNetTcpBindingChecked = true;
+        private WcfBindingType _wcfBindingType = WcfBindingType.NetTcpBinding;
 
         private void GetZipCodeInfoButton_Click(object sender, RoutedEventArgs e)
         {
@@ -31,7 +38,7 @@ namespace GeoLib.Client
             // ReSharper disable once InvertIf
             if (ZipCodeTextBox.Text != "")
             {
-                GeoClient geoClient = GetGeoClient(_isNetTcpBindingChecked);
+                GeoClient geoClient = GetGeoClient(_wcfBindingType);
                 ZipCodeData zipCodeData = geoClient.GetZipCodeInfo(ZipCodeTextBox.Text);
 
                 if (zipCodeData != null)
@@ -57,7 +64,7 @@ namespace GeoLib.Client
                 //Binding binding = new NetTcpBinding();
                 //GeoClient geoClient = new GeoClient(binding, endpointAddress);
 
-                GeoClient geoClient = GetGeoClient(_isNetTcpBindingChecked);
+                GeoClient geoClient = GetGeoClient(_wcfBindingType);
                 IEnumerable<ZipCodeData> zipCodeDataEnumerable = geoClient.GetZipCodes(StateTextBox.Text);
 
                 if (zipCodeDataEnumerable != null)
@@ -74,34 +81,65 @@ namespace GeoLib.Client
             // todo: clean up this code
             if (e.OriginalSource is RadioButton radioButton)
             {
-                if ((string)radioButton.Content == "netTcpBinding")
+                switch ((string)radioButton.Content)
                 {
-                    _isNetTcpBindingChecked = true;
-                }
-                else
-                {
-                    _isNetTcpBindingChecked = false;
-                }
+                    case "netTcpBinding":
+                        _wcfBindingType = WcfBindingType.NetTcpBinding;
+                        break;
 
+                    case "basicHttpBinding":
+                        _wcfBindingType = WcfBindingType.BasicHttpBinding;
+                        break;
+
+                    case "wsHttpBinding":
+                        _wcfBindingType = WcfBindingType.WsHttpBinding;
+                        break;
+                }
             }
         }
 
-        private static GeoClient GetGeoClient(bool isNetTcpBinding)
+        private GeoClient GetGeoClient(WcfBindingType wcfBindingType)
         {
-            GeoClient geoClient;
+            GeoClient geoClient = null;
 
-            if (isNetTcpBinding)
+            switch (wcfBindingType)
             {
-                const string netTcpEndpoint = "netTcpEndpoint";
-                geoClient = new GeoClient(netTcpEndpoint);
-                //Debug.WriteLine("binding = netTcpEndpoint");
+                case WcfBindingType.NetTcpBinding:
+                    const string netTcpEndpoint = "netTcpEndpoint";
+                    geoClient = new GeoClient(netTcpEndpoint);
+                    Debug.WriteLine("binding = netTcpEndpoint");
+                    break;
+
+                case WcfBindingType.BasicHttpBinding:
+                    const string basicHttpEndpoint = "basicHttpEndpoint";
+                    geoClient = new GeoClient(basicHttpEndpoint);
+                    Debug.WriteLine("binding = basicHttpEndpoint");
+                    break;
+
+                case WcfBindingType.WsHttpBinding:
+                    const string wsHttpEndpoint = "wsHttpEndpoint";
+                    geoClient = new GeoClient(wsHttpEndpoint);
+                    Debug.WriteLine("binding = wsHttpEndpoint");
+                    break;
+
+                default:
+                    Debug.WriteLine("Should not get here");
+                    break;
+
             }
-            else
-            {
-                const string httpEndpoint = "basicHttpEndpoint";
-                geoClient = new GeoClient(httpEndpoint);
-                //Debug.WriteLine("binding = httpEndpoint");
-            }
+
+            //if (isNetTcpBinding)
+            //{
+            //    const string netTcpEndpoint = "netTcpEndpoint";
+            //    geoClient = new GeoClient(netTcpEndpoint);
+            //    //Debug.WriteLine("binding = netTcpEndpoint");
+            //}
+            //else
+            //{
+            //    const string httpEndpoint = "basicHttpEndpoint";
+            //    geoClient = new GeoClient(httpEndpoint);
+            //    //Debug.WriteLine("binding = httpEndpoint");
+            //}
 
             return geoClient;
         }
