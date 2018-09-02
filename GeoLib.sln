@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoLib.WpfHost", "GeoLib.Wp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoLib.TopShelf.WcfWindowsServiceHost", "GeoLib.TopShelf.WcfWindowsServiceHost\GeoLib.TopShelf.WcfWindowsServiceHost.csproj", "{EBAE0FE5-BC36-4FC5-A48D-9D3DB5FAA1CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoLib.WcfServiceLibrary", "GeoLib.WcfServiceLibrary\GeoLib.WcfServiceLibrary.csproj", "{16788939-9C60-4645-AA61-419EA0CC02A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,10 @@ Global
 		{EBAE0FE5-BC36-4FC5-A48D-9D3DB5FAA1CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBAE0FE5-BC36-4FC5-A48D-9D3DB5FAA1CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBAE0FE5-BC36-4FC5-A48D-9D3DB5FAA1CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16788939-9C60-4645-AA61-419EA0CC02A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16788939-9C60-4645-AA61-419EA0CC02A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16788939-9C60-4645-AA61-419EA0CC02A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16788939-9C60-4645-AA61-419EA0CC02A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,6 +107,7 @@ Global
 		{0C14DEE0-4F3C-4F38-8C0F-A6BDDC27A2C4} = {7CB814E0-DF13-4FEF-A9C7-BD7A453D48E5}
 		{ACDED3EB-C671-41D1-A6B3-AB5DDF05DF8D} = {3808D3D9-F128-425D-9053-B67FFB680856}
 		{EBAE0FE5-BC36-4FC5-A48D-9D3DB5FAA1CF} = {3808D3D9-F128-425D-9053-B67FFB680856}
+		{16788939-9C60-4645-AA61-419EA0CC02A8} = {27DEDB78-4966-448E-B7AA-C40CCD29870A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CF36EECC-74BB-4574-B033-BBF8E28746B1}
