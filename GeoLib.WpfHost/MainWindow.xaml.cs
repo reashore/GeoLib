@@ -18,12 +18,12 @@ namespace GeoLib.WpfHost
             Title = $"Thread ID = {threadId}";
         }
 
-        private ServiceHost _geoManagerHost;
+        private ServiceHost _geoLibServiceHost;
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            _geoManagerHost = new ServiceHost(typeof(GeoManager));
-            _geoManagerHost.Open();
+            _geoLibServiceHost = new ServiceHost(typeof(GeoManager));
+            _geoLibServiceHost.Open();
 
             StartButton.IsEnabled = false;
             StopButton.IsEnabled = true;
@@ -31,7 +31,7 @@ namespace GeoLib.WpfHost
 
         private void StopButton_Click(object sender, RoutedEventArgs e)
         {
-            _geoManagerHost.Close();
+            _geoLibServiceHost.Close();
 
             StartButton.IsEnabled = true;
             StopButton.IsEnabled = false;
