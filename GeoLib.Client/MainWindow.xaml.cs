@@ -53,7 +53,6 @@ namespace GeoLib.Client
                                      $"Message = {exception.Message} \r\n" +
                                      $"Proxy state = {geoClient.State.ToString()}";
 
-                    Debug.WriteLine(message);
                     CityOutputLabel.Content = "";
                     StateOutputLabel.Content = "";
                     ErrorMessage1Label.Content = message;
@@ -96,7 +95,6 @@ namespace GeoLib.Client
                                      $"Message = {exception.Message} \r\n" +
                                      $"Proxy state = {geoClient.State.ToString()}";
 
-                    Debug.WriteLine(message);
                     ErrorMessage2Label.Content = message;
                 }
 
