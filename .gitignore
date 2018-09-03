@@ -211,8 +211,9 @@ UpgradeLog*.XML
 UpgradeLog*.htm
 
 # SQL Server files
-*.mdf
-*.ldf
+# modified this (FJR)
+# *.mdf
+# *.ldf
 
 # Business Intelligence projects
 *.rdl.data
