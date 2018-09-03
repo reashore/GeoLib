@@ -40,10 +40,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoLib.IISHost", "GeoLib.IISHost\GeoLib.IISHost.csproj", "{DFA69CB5-A617-44AE-879B-20B4F82BE95A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Databases", "Databases", "{AD27066D-4799-4ED6-BFE7-F2489BFE853F}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\Users\reash\Desktop\wcf-end-to-end\1-wcf-end-to-end-m1-exercise-files\ZipCodeData.mdf = ..\..\..\Users\reash\Desktop\wcf-end-to-end\1-wcf-end-to-end-m1-exercise-files\ZipCodeData.mdf
-		..\..\..\Users\reash\Desktop\wcf-end-to-end\1-wcf-end-to-end-m1-exercise-files\ZipCodeData_log.ldf = ..\..\..\Users\reash\Desktop\wcf-end-to-end\1-wcf-end-to-end-m1-exercise-files\ZipCodeData_log.ldf
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
