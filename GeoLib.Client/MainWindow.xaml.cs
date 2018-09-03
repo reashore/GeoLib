@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.ServiceModel;
 using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
 using GeoLib.Contracts;
 using GeoLib.Proxy;
 
@@ -34,12 +34,30 @@ namespace GeoLib.Client
             // todo: fails to clear labels
             //CityOutputLabel.Content = "";
             //StateOutputLabel.Content = "";
+            string zipCode = ZipCodeTextBox.Text;
 
             // ReSharper disable once InvertIf
-            if (ZipCodeTextBox.Text != "")
+            if (zipCode != "")
             {
-                GeoClient geoClient = GetGeoClient(_wcfBindingType);
-                ZipCodeData zipCodeData = geoClient.GetZipCodeInfo(ZipCodeTextBox.Text);
+                GeoClient geoClient = GetGeoClientWithBinding(_wcfBindingType);
+                ZipCodeData zipCodeData = null;
+
+                try
+                {
+                    zipCodeData = geoClient.GetZipCodeInfo(zipCode);
+
+                }
+                catch (FaultException exception)
+                {
+                    string message = "Exception: \r\n" +
+                                     $"Message = {exception.Message} \r\n" +
+                                     $"Proxy state = {geoClient.State.ToString()}";
+
+                    Debug.WriteLine(message);
+                    CityOutputLabel.Content = "";
+                    StateOutputLabel.Content = "";
+                    ErrorMessage1Label.Content = message;
+                }
 
                 if (zipCodeData != null)
                 {
@@ -55,17 +73,32 @@ namespace GeoLib.Client
         {
             // todo: Fails to clear ListBox
             //ZipCodesListBox.ItemsSource = "";
+            string state = StateTextBox.Text;
 
             // ReSharper disable once InvertIf
-            if (StateTextBox.Text != "")
+            if (state != "")
             {
                 // Alternate constructor
                 //EndpointAddress endpointAddress = new EndpointAddress("net.tcp://localhost:8009/GeoService");
                 //Binding binding = new NetTcpBinding();
                 //GeoClient geoClient = new GeoClient(binding, endpointAddress);
 
-                GeoClient geoClient = GetGeoClient(_wcfBindingType);
-                IEnumerable<ZipCodeData> zipCodeDataEnumerable = geoClient.GetZipCodes(StateTextBox.Text);
+                IEnumerable<ZipCodeData> zipCodeDataEnumerable = null;
+                GeoClient geoClient = GetGeoClientWithBinding(_wcfBindingType);
+                
+                try
+                {
+                    zipCodeDataEnumerable = geoClient.GetZipCodes(state);
+                }
+                catch (FaultException exception)
+                {
+                    string message = "Exception: \r\n" +
+                                     $"Message = {exception.Message} \r\n" +
+                                     $"Proxy state = {geoClient.State.ToString()}";
+
+                    Debug.WriteLine(message);
+                    ErrorMessage2Label.Content = message;
+                }
 
                 if (zipCodeDataEnumerable != null)
                 {
@@ -76,29 +109,29 @@ namespace GeoLib.Client
             }
         }
 
-        private void RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            // todo: clean up this code
-            if (e.OriginalSource is RadioButton radioButton)
-            {
-                switch ((string)radioButton.Content)
-                {
-                    case "netTcpBinding":
-                        _wcfBindingType = WcfBindingType.NetTcpBinding;
-                        break;
+        //private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    // todo: clean up this code
+        //    if (e.OriginalSource is RadioButton radioButton)
+        //    {
+        //        switch ((string)radioButton.Content)
+        //        {
+        //            case "netTcpBinding":
+        //                _wcfBindingType = WcfBindingType.NetTcpBinding;
+        //                break;
 
-                    case "basicHttpBinding":
-                        _wcfBindingType = WcfBindingType.BasicHttpBinding;
-                        break;
+        //            case "basicHttpBinding":
+        //                _wcfBindingType = WcfBindingType.BasicHttpBinding;
+        //                break;
 
-                    case "wsHttpBinding":
-                        _wcfBindingType = WcfBindingType.WsHttpBinding;
-                        break;
-                }
-            }
-        }
+        //            case "wsHttpBinding":
+        //                _wcfBindingType = WcfBindingType.WsHttpBinding;
+        //                break;
+        //        }
+        //    }
+        //}
 
-        private GeoClient GetGeoClient(WcfBindingType wcfBindingType)
+        private static GeoClient GetGeoClientWithBinding(WcfBindingType wcfBindingType)
         {
             GeoClient geoClient = null;
 
@@ -127,19 +160,6 @@ namespace GeoLib.Client
                     break;
 
             }
-
-            //if (isNetTcpBinding)
-            //{
-            //    const string netTcpEndpoint = "netTcpEndpoint";
-            //    geoClient = new GeoClient(netTcpEndpoint);
-            //    //Debug.WriteLine("binding = netTcpEndpoint");
-            //}
-            //else
-            //{
-            //    const string httpEndpoint = "basicHttpEndpoint";
-            //    geoClient = new GeoClient(httpEndpoint);
-            //    //Debug.WriteLine("binding = httpEndpoint");
-            //}
 
             return geoClient;
         }

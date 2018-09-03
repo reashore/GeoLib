@@ -7,23 +7,25 @@
         mc:Ignorable="d"
         Title="GeoLib WCF Client App" Height="450" Width="800">
     <Grid>
-        <GroupBox Header="Binding Type" Margin="20">
+        <!--<GroupBox Header="Binding Type" Margin="20">
             <StackPanel x:Name="BindingType"  Margin="15">
                 <RadioButton x:Name="NetTcpBindingRadioButton" Content="netTcpBinding" IsChecked="true" Margin="4" Checked="RadioButton_Checked" />
                 <RadioButton x:Name="HttpBindingRadioButton" Content="basicHttpBinding" Margin="4" Checked="RadioButton_Checked" />
                 <RadioButton x:Name="WsBindingRadioButton" Content="wsHttpBinding" Margin="4" Checked="RadioButton_Checked" />
             </StackPanel>
-        </GroupBox>
+        </GroupBox>-->
         <Label x:Name="ZipCodeLabel" Content="Zip Code:" HorizontalAlignment="Left" Margin="98,61,0,0" VerticalAlignment="Top" Width="61" RenderTransformOrigin="1.485,0.585"/>
         <TextBox x:Name="ZipCodeTextBox" HorizontalAlignment="Left" Height="23" Margin="181,61,0,0" TextWrapping="Wrap" Text="07035" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.586,0.485"/>
         <Button x:Name="GetZipCodeInfoButton" Content="Get Zip Code Info:" HorizontalAlignment="Left" Margin="181,105,0,0" VerticalAlignment="Top" Width="120" Click="GetZipCodeInfoButton_Click"/>
-        <Label x:Name="CityOutputLabel" Content="" HorizontalAlignment="Left" Margin="181,157,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="CityOutputLabel" Content="" HorizontalAlignment="Right" Margin="0,157,492.6,0" VerticalAlignment="Top" Width="120" />
         <Label x:Name="StateOutputLabel" Content="" HorizontalAlignment="Left" Margin="181,200,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="ErrorMessage1Label" Content="" HorizontalAlignment="Left" Margin="181,241,0,0" VerticalAlignment="Top" Width="295" Height="87"/>
 
         <Label x:Name="StateLabel" Content="State:" HorizontalAlignment="Left" Margin="405,61,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.626,0.585"/>
         <TextBox x:Name="StateTextBox" HorizontalAlignment="Left" Height="23" Margin="496,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="NJ"/>
         <Button x:Name="GetZipCodesButton" Content="Get Zip Codes" HorizontalAlignment="Left" Margin="496,110,0,0" VerticalAlignment="Top" Width="120" Click="GetZipCodesButton_Click"/>
-        <ListBox x:Name="ZipCodesListBox" HorizontalAlignment="Left" Height="198" Margin="496,184,0,0" VerticalAlignment="Top" Width="263">
+        <Label  x:Name="ErrorMessage2Label" Content="" HorizontalAlignment="Left" Margin="496,139,0,0" VerticalAlignment="Top" Width="263" Height="68"/>
+        <ListBox x:Name="ZipCodesListBox" HorizontalAlignment="Left" Height="152" Margin="496,230,0,0" VerticalAlignment="Top" Width="263">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

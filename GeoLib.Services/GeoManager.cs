@@ -7,7 +7,7 @@ using GeoLib.Data.Repositories;
 
 namespace GeoLib.Services
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, IncludeExceptionDetailInFaults = true)]
     public class GeoManager : IGeoService
     {
         #region Constructors and Fields
@@ -58,7 +58,7 @@ namespace GeoLib.Services
 
         public ZipCodeData GetZipCodeInfo(string zipCode)
         {
-            ZipCodeData zipCodeData = null;
+            ZipCodeData zipCodeData;
             IZipCodeRepository zipCodeRepository = _zipCodeRepository ?? new ZipCodeRepository();
             ZipCode zipCodeEntity = zipCodeRepository.GetByZipCode(zipCode);
 
@@ -70,6 +70,11 @@ namespace GeoLib.Services
                     State = zipCodeEntity.State.Abbreviation,
                     ZipCode = zipCodeEntity.Zip
                 };
+            }
+            else
+            {
+                string message = $"Zip code {zipCode} not found";
+                throw new FaultException(message); 
             }
 
             return zipCodeData;
@@ -97,6 +102,11 @@ namespace GeoLib.Services
                     zipCodeData.Add(newZipCodeData);
                 }
             }
+            else
+            {
+                string message = $"State {state} not found";
+                throw new FaultException(message);
+            }
 
             return zipCodeData;
         }
@@ -123,6 +133,10 @@ namespace GeoLib.Services
 
                     zipCodeData.Add(newZipCodeData);
                 }
+            }
+            else
+            {
+                throw new FaultException($"Zip code range ({zipCode}, {zipCodeRange}) not found");
             }
 
             return zipCodeData;
