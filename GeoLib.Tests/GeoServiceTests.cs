@@ -8,7 +8,7 @@ using Moq;
 namespace GeoLib.Tests
 {
     [TestClass]
-    public class GeoManagerTests
+    public class GeoServiceTests
     {
         [TestMethod]
         public void ZipCodeRetrievalTest()
@@ -22,7 +22,7 @@ namespace GeoLib.Tests
                 Zip = "07035"
             };
             zipCodeRepositoryMock.Setup(obj => obj.GetByZipCode("07035")).Returns(zipCode);
-            IGeoService geoService = new GeoManager(zipCodeRepositoryMock.Object);
+            IGeoService geoService = new GeoService(zipCodeRepositoryMock.Object);
 
             // Act
             ZipCodeData zipCodeData = geoService.GetZipCodeInfo("07035");

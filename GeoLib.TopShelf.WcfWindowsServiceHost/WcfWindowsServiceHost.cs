@@ -14,7 +14,7 @@ namespace GeoLib.TopShelf.WcfWindowsServiceHost
         {
             try
             {
-                _geoManagerHost = new ServiceHost(typeof(GeoManager));
+                _geoManagerHost = new ServiceHost(typeof(GeoService));
                 _geoManagerHost.Open();
 
             }

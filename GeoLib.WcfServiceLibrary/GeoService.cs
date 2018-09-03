@@ -1,32 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using GeoLib.Contracts;
+using System.Collections.Generic;
 using System.ServiceModel;
-using GeoLib.Contracts;
 using GeoLib.Data.Entities;
 using GeoLib.Data.Interfaces;
 using GeoLib.Data.Repositories;
 
-namespace GeoLib.Services
+namespace GeoLib.WcfServiceLibrary
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, IncludeExceptionDetailInFaults = true)]
-    public class GeoManager : IGeoService
+    // Had  to duplicate this class to prevent error about "adjusting Code Access Security policies"
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
+    public class GeoService : IGeoService
     {
         #region Constructors and Fields
 
-        public GeoManager()
+        public GeoService()
         {
         }
 
-        public GeoManager(IZipCodeRepository zipCodeRepository)
+        public GeoService(IZipCodeRepository zipCodeRepository)
         {
             _zipCodeRepository = zipCodeRepository;
         }
 
-        public GeoManager(IStateRepository stateRepository)
+        public GeoService(IStateRepository stateRepository)
         {
             _stateRepository = stateRepository;
         }
 
-        public GeoManager(IZipCodeRepository zipCodeRepository, IStateRepository stateRepository)
+        public GeoService(IZipCodeRepository zipCodeRepository, IStateRepository stateRepository)
         {
             _zipCodeRepository = zipCodeRepository;
             _stateRepository = stateRepository;
@@ -58,7 +59,7 @@ namespace GeoLib.Services
 
         public ZipCodeData GetZipCodeInfo(string zipCode)
         {
-            ZipCodeData zipCodeData;
+            ZipCodeData zipCodeData = null;
             IZipCodeRepository zipCodeRepository = _zipCodeRepository ?? new ZipCodeRepository();
             ZipCode zipCodeEntity = zipCodeRepository.GetByZipCode(zipCode);
 
@@ -70,11 +71,6 @@ namespace GeoLib.Services
                     State = zipCodeEntity.State.Abbreviation,
                     ZipCode = zipCodeEntity.Zip
                 };
-            }
-            else
-            {
-                string message = $"Zip code {zipCode} not found";
-                throw new FaultException(message); 
             }
 
             return zipCodeData;
@@ -102,11 +98,6 @@ namespace GeoLib.Services
                     zipCodeData.Add(newZipCodeData);
                 }
             }
-            else
-            {
-                string message = $"State {state} not found";
-                throw new FaultException(message);
-            }
 
             return zipCodeData;
         }
@@ -133,10 +124,6 @@ namespace GeoLib.Services
 
                     zipCodeData.Add(newZipCodeData);
                 }
-            }
-            else
-            {
-                throw new FaultException($"Zip code range ({zipCode}, {zipCodeRange}) not found");
             }
 
             return zipCodeData;

@@ -22,7 +22,7 @@ namespace GeoLib.WpfHost
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            _geoLibServiceHost = new ServiceHost(typeof(GeoManager));
+            _geoLibServiceHost = new ServiceHost(typeof(GeoService));
             _geoLibServiceHost.Open();
 
             StartButton.IsEnabled = false;

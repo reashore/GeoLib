@@ -9,13 +9,13 @@ namespace GeoLib.ConsoleHost
     {
         public static void Main()
         {
-            ServiceHost geoManagerHost = null;
+            ServiceHost geoServiceHost = null;
 
             try
             {
-                geoManagerHost = new ServiceHost(typeof(GeoManager));
+                geoServiceHost = new ServiceHost(typeof(GeoService));
                 //ConfigureEndpoint(geoManagerHost);
-                geoManagerHost.Open();
+                geoServiceHost.Open();
             }
             catch (Exception exception)
             {
@@ -25,7 +25,7 @@ namespace GeoLib.ConsoleHost
             Console.WriteLine("Service started. Press any key to exit.");
             Console.ReadKey();
 
-            geoManagerHost?.Close();
+            geoServiceHost?.Close();
         }
 
         //private static void ConfigureEndpoint(ServiceHost serviceHost)
