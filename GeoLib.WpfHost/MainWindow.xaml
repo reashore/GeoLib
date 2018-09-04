@@ -3,11 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:GeoLib.WpfHost"
         mc:Ignorable="d"
-        Title="MainWindow" Height="230" Width="400">
-    <StackPanel Orientation="Vertical">
-        <Button x:Name="StartButton" Content="Start WCF Services" Margin="50,20,50,0" FontSize="18" Click="StartButton_Click"/>
-        <Button x:Name="StopButton" Content="Stop WCF Services" Margin="50,20,50,0" FontSize="18" Click="StopButton_Click"/>
-    </StackPanel>
+        Title="GeoLib Service Host" Height="180" Width="400" ResizeMode="NoResize">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="StartButton" Content="Start GeoLib Services" Grid.Row="0" Click="StartButton_Click"/>
+        <Button x:Name="StopButton" Content="Stop GeoLib Services" Grid.Row="1" Click="StopButton_Click"/>
+    </Grid>
 </Window>
