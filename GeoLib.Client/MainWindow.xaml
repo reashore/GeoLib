@@ -5,15 +5,167 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GeoLib.Client"
         mc:Ignorable="d"
-        Title="GeoLib WCF Client App" Height="450" Width="800">
+        Title="GeoLib WCF Client App" Height="800" Width="700">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Height" Value="40"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Height" Value="40"/>
+        </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="RadioButton">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <!--<GroupBox Header="Binding Type" Margin="20">
+        <TabControl Margin="20" FontSize="18">
+            <TabItem Header="GeoLib Demo 1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="Zip Code:" Grid.Row="1" Grid.Column="0" Width="120" />
+                    <TextBox x:Name="ZipCodeTextBox" Grid.Row="1" Grid.Column="1" Text="07035" Width="80" />
+
+                    <Label Content="City:" Grid.Row="2" Grid.Column="0" Width="120" />
+                    <TextBox x:Name="CityOutputTextBox" Grid.Row="2" Grid.Column="1" IsReadOnly="True" Text="" Width="300" />
+
+                    <Label Content="State:" Grid.Row="3" Grid.Column="0" Width="120"/>
+                    <TextBox x:Name="StateOutputTextBox" Grid.Row="3" Grid.Column="1" Text="" IsReadOnly="True" Width="300"/>
+
+                    <Label Content="Error Message:" Grid.Row="4" Grid.Column="0" />
+                    <TextBox x:Name="ErrorMessage1Label" Text="" Grid.Row="4" Grid.Column="1" Width="400" Height="125" MaxLines="5"/>
+
+                    <Button x:Name="GetZipCodeInfoButton" Content="Get Zip Code Info" Grid.Row="5" Grid.Column="1" Width="280" Click="GetZipCodeInfoButton_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="GeoLib Demo 2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="State:" Grid.Row="1" Grid.Column="0"/>
+                    <TextBox x:Name="StateTextBox" Text="NJ" Grid.Row="1" Grid.Column="1" Width="100"/>
+
+                    <Label Content="Zip Codes:" Grid.Row="2" Grid.Column="0"/>
+                    <ListBox x:Name="ZipCodesListBox" Grid.Row="2" Grid.Column="1" Width="300" Height="200">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding ZipCode}" />
+                                    <TextBlock Text=" - " />
+                                    <TextBlock Text="{Binding City}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <Label Content="Error Message:" Grid.Row="3" Grid.Column="0"/>
+                    <TextBox x:Name="ErrorMessage2TextBlock" Text="" Grid.Row="3" Grid.Column="1" MaxLines="5" Width="400" Height="125" IsReadOnly="True"/>
+
+                    <Button x:Name="GetZipCodesButton" Content="Get Zip Codes" Grid.Row="4" Grid.Column="1" Width="280" Click="GetZipCodesButton_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="GeoLib Demo 3">
+                <GroupBox Header="Binding Type" Margin="20" Width="300" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <StackPanel Margin="15">
+                        <RadioButton x:Name="NetTcpBindingRadioButton" Content="NetTcp Binding" IsChecked="true" Margin="10"/>
+                        <RadioButton x:Name="BasicHttpBindingRadioButton" Content="BasicHttp Binding" Margin="10"/>
+                        <RadioButton x:Name="WsHttpBindingRadioButton" Content="WsHttp Binding" Margin="10"/>
+                    </StackPanel>
+                </GroupBox>
+            </TabItem>
+        </TabControl>
+    </Grid>
+
+
+
+
+    <!--<Label x:Name="ZipCodeLabel" Content="Zip Code:" HorizontalAlignment="Left" Margin="98,61,0,0" VerticalAlignment="Top" Width="61" RenderTransformOrigin="1.485,0.585"/>
+        <TextBox x:Name="ZipCodeTextBox" HorizontalAlignment="Left" Height="23" Margin="181,61,0,0" TextWrapping="Wrap" Text="07035" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.586,0.485"/>
+        <Button x:Name="GetZipCodeInfoButton" Content="Get Zip Code Info:" HorizontalAlignment="Left" Margin="181,105,0,0" VerticalAlignment="Top" Width="120" Click="GetZipCodeInfoButton_Click"/>
+        <Label x:Name="CityOutputLabel" Content="" HorizontalAlignment="Right" Margin="0,157,492.6,0" VerticalAlignment="Top" Width="120" />
+        <Label x:Name="StateOutputLabel" Content="" HorizontalAlignment="Left" Margin="181,200,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="ErrorMessage1Label" Content="" HorizontalAlignment="Left" Margin="181,241,0,0" VerticalAlignment="Top" Width="295" Height="87"/>-->
+
+    <!--<Label x:Name="StateLabel" Content="State:" HorizontalAlignment="Left" Margin="405,61,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.626,0.585"/>
+        <TextBox x:Name="StateTextBox" HorizontalAlignment="Left" Height="23" Margin="496,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="NJ"/>
+        <Button x:Name="GetZipCodesButton" Content="Get Zip Codes" HorizontalAlignment="Left" Margin="496,110,0,0" VerticalAlignment="Top" Width="120" Click="GetZipCodesButton_Click"/>
+        <Label  x:Name="ErrorMessage2Label" Content="" HorizontalAlignment="Left" Margin="496,139,0,0" VerticalAlignment="Top" Width="263" Height="68"/>
+        <ListBox x:Name="ZipCodesListBox" HorizontalAlignment="Left" Height="152" Margin="496,230,0,0" VerticalAlignment="Top" Width="263">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding ZipCode}" />
+                        <TextBlock Text=" - " />
+                        <TextBlock Text="{Binding City}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>-->
+
+    <!--<Grid>
+        -->
+    <!--<GroupBox Header="Binding Type" Margin="20">
             <StackPanel x:Name="BindingType"  Margin="15">
                 <RadioButton x:Name="NetTcpBindingRadioButton" Content="netTcpBinding" IsChecked="true" Margin="4" Checked="RadioButton_Checked" />
                 <RadioButton x:Name="HttpBindingRadioButton" Content="basicHttpBinding" Margin="4" Checked="RadioButton_Checked" />
                 <RadioButton x:Name="WsBindingRadioButton" Content="wsHttpBinding" Margin="4" Checked="RadioButton_Checked" />
             </StackPanel>
         </GroupBox>-->
+    <!--
+
         <Label x:Name="ZipCodeLabel" Content="Zip Code:" HorizontalAlignment="Left" Margin="98,61,0,0" VerticalAlignment="Top" Width="61" RenderTransformOrigin="1.485,0.585"/>
         <TextBox x:Name="ZipCodeTextBox" HorizontalAlignment="Left" Height="23" Margin="181,61,0,0" TextWrapping="Wrap" Text="07035" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.586,0.485"/>
         <Button x:Name="GetZipCodeInfoButton" Content="Get Zip Code Info:" HorizontalAlignment="Left" Margin="181,105,0,0" VerticalAlignment="Top" Width="120" Click="GetZipCodeInfoButton_Click"/>
@@ -36,5 +188,5 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-    </Grid>
+    </Grid>-->
 </Window>

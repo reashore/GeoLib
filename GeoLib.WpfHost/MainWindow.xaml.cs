@@ -1,4 +1,5 @@
-﻿using System.ServiceModel;
+﻿using System;
+using System.ServiceModel;
 using System.Windows;
 using GeoLib.Services;
 
@@ -10,17 +11,21 @@ namespace GeoLib.WpfHost
         {
             InitializeComponent();
             EnableStartButton(true);
-
-            //int threadId = Thread.CurrentThread.ManagedThreadId;
-            //Title = $"Thread ID = {threadId}";
         }
 
         private ServiceHost _geoLibServiceHost;
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            _geoLibServiceHost = new ServiceHost(typeof(GeoService));
-            _geoLibServiceHost.Open();
+            try
+            {
+                _geoLibServiceHost = new ServiceHost(typeof(GeoService));
+                _geoLibServiceHost.Open();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error");
+            }
 
             EnableStartButton(false);
         }
