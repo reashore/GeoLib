@@ -15,7 +15,7 @@ namespace GeoLib.Proxy
         {
         }
 
-        public IEnumerable<string> GetStates(bool isPrimaryOnly)
+        public List<string> GetStates(bool isPrimaryOnly)
         {
             return Channel.GetStates(isPrimaryOnly);
         }
@@ -25,12 +25,12 @@ namespace GeoLib.Proxy
             return Channel.GetZipCodeInfo(zipCode);
         }
 
-        public IEnumerable<ZipCodeData> GetZipCodes(string state)
+        public List<ZipCodeData> GetZipCodes(string state)
         {
             return Channel.GetZipCodes(state);
         }
 
-        public IEnumerable<ZipCodeData> GetZipCodes(string zipCode, int zipCodeRange)
+        public List<ZipCodeData> GetZipCodes(string zipCode, int zipCodeRange)
         {
             return Channel.GetZipCodes(zipCode, zipCodeRange);
         }

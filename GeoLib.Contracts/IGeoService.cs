@@ -7,15 +7,15 @@ namespace GeoLib.Contracts
     public interface IGeoService
     {
         [OperationContract]
-        IEnumerable<string> GetStates(bool isPrimaryOnly);
+        List<string> GetStates(bool isPrimaryOnly);
 
         [OperationContract]
         ZipCodeData GetZipCodeInfo(string zipCode);
 
         [OperationContract]
-        IEnumerable<ZipCodeData> GetZipCodes(string state);
+        List<ZipCodeData> GetZipCodes(string state);
 
         [OperationContract(Name = "GetZipCodesForRange")]
-        IEnumerable<ZipCodeData> GetZipCodes(string zipCode, int zipCodeRange);
+        List<ZipCodeData> GetZipCodes(string zipCode, int zipCodeRange);
     }
 }

@@ -24,6 +24,7 @@ namespace GeoLib.Client
         {
             CityOutputTextBox.Text = "";
             StateOutputTextBox.Text = "";
+            ErrorMessage1TextBox.Text = "";
             string zipCode = ZipCodeTextBox.Text;
 
             // ReSharper disable once InvertIf
@@ -46,7 +47,7 @@ namespace GeoLib.Client
 
                     CityOutputTextBox.Text = "";
                     StateOutputTextBox.Text = "";
-                    ErrorMessage1Label.Text = message;
+                    ErrorMessage1TextBox.Text = message;
                 }
 
                 if (zipCodeData != null)
@@ -61,9 +62,9 @@ namespace GeoLib.Client
 
         private void GetZipCodesButton_Click(object sender, RoutedEventArgs e)
         {
-            // todo: Fails to clear ListBox
             ZipCodesListBox.ItemsSource = null;
             ZipCodesListBox.Items.Clear();
+            ErrorMessage2TextBox.Text = "";
             string state = StateTextBox.Text;
 
             // ReSharper disable once InvertIf
@@ -74,13 +75,13 @@ namespace GeoLib.Client
                 //Binding binding = new NetTcpBinding();
                 //GeoClient geoClient = new GeoClient(binding, endpointAddress);
 
-                IEnumerable<ZipCodeData> zipCodeDataEnumerable = null;
+                List<ZipCodeData> zipCodeDataList = null;
                 WcfBindingType wcfBindingType = GetBindingTypeFromRadioButtons();
                 GeoClient geoClient = GetGeoClientWithBinding(wcfBindingType);
                 
                 try
                 {
-                    zipCodeDataEnumerable = geoClient.GetZipCodes(state);
+                    zipCodeDataList = geoClient.GetZipCodes(state);
                 }
                 catch (FaultException exception)
                 {
@@ -88,14 +89,16 @@ namespace GeoLib.Client
                                      $"Message = {exception.Message} \r\n" +
                                      $"Proxy state = {geoClient.State.ToString()}";
 
-                    ErrorMessage2TextBlock.Text = message;
+                    ErrorMessage2TextBox.Text = message;
                 }
 
-                if (zipCodeDataEnumerable != null)
+                if (zipCodeDataList == null || zipCodeDataList.Count == 0)
                 {
-                    ZipCodesListBox.ItemsSource = zipCodeDataEnumerable;
+                    ErrorMessage2TextBox.Text = $"No zip code data found for state {state}";
                 }
-                
+
+                ZipCodesListBox.ItemsSource = zipCodeDataList;
+
                 geoClient.Close();
             }
         }

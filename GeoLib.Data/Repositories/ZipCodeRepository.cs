@@ -21,7 +21,7 @@ namespace GeoLib.Data.Repositories
             return e => e.ZipCodeId == id;
         }
 
-        public override IEnumerable<ZipCode> Get()
+        public override List<ZipCode> Get()
         {
             using (GeoLibDbContext entityContext = new GeoLibDbContext())
             {
@@ -37,7 +37,7 @@ namespace GeoLib.Data.Repositories
             }
         }
 
-        public IEnumerable<ZipCode> GetByState(string state)
+        public List<ZipCode> GetByState(string state)
         {
             using (GeoLibDbContext geoLibDbContext = new GeoLibDbContext())
             {
@@ -47,7 +47,7 @@ namespace GeoLib.Data.Repositories
             }
         }
 
-        public IEnumerable<ZipCode> GetZipCodesForRange(ZipCode zip, int range)
+        public List<ZipCode> GetZipCodesForRange(ZipCode zip, int range)
         {
             using (GeoLibDbContext geoLibDbContext = new GeoLibDbContext())
             {

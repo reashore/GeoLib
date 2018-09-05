@@ -19,7 +19,7 @@ namespace GeoLib.Core
             return DbSet(entityContext).Add(entity);
         }
 
-        private IEnumerable<T> GetEntities(TU entityContext)
+        private List<T> GetEntities(TU entityContext)
         {
             return DbSet(entityContext).ToList();
         }
@@ -77,7 +77,7 @@ namespace GeoLib.Core
             }
         }
 
-        public virtual IEnumerable<T> Get()
+        public virtual List<T> Get()
         {
             using (TU entityContext = new TU())
             {

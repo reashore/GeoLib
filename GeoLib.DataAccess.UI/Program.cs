@@ -27,8 +27,8 @@ namespace GeoLib.DataAccess.UI
             State state = stateRepository.Get(stateString);
 
             const bool isPrimaryOnly = true;
-            IEnumerable<State> states = stateRepository.Get(isPrimaryOnly);
-            int count = states.Count();
+            List<State> states = stateRepository.Get(isPrimaryOnly);
+            int count = states.Count;
             Console.WriteLine($"states.Count() = {count}");
         }
 
@@ -36,13 +36,13 @@ namespace GeoLib.DataAccess.UI
         {
             IZipCodeRepository zipCodeRepository = new ZipCodeRepository();
 
-            IEnumerable<ZipCode> zipCodes1 = zipCodeRepository.Get();
-            int count = zipCodes1.Count();
+            List<ZipCode> zipCodes1 = zipCodeRepository.Get();
+            int count = zipCodes1.Count;
             Console.WriteLine($"zipCodes1.Count() = {count}");
 
             const string stateString = "NJ";
-            IEnumerable<ZipCode> zipCodes2 = zipCodeRepository.GetByState(stateString);
-            count = zipCodes2.Count();
+            List<ZipCode> zipCodes2 = zipCodeRepository.GetByState(stateString);
+            count = zipCodes2.Count;
             Console.WriteLine($"zipCodes2.Count() = {count}");
 
             ZipCode zipCode = new ZipCode
@@ -52,8 +52,8 @@ namespace GeoLib.DataAccess.UI
                 Zip = "07035"
             };
             const int range = 10000;
-            IEnumerable<ZipCode> zipCodes3 = zipCodeRepository.GetZipCodesForRange(zipCode, range);
-            count = zipCodes3.Count();
+            List<ZipCode> zipCodes3 = zipCodeRepository.GetZipCodesForRange(zipCode, range);
+            count = zipCodes3.Count;
             Console.WriteLine($"zipCodes3.Count() = {count}");
         }
     }

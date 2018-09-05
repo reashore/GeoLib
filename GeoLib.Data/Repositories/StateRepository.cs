@@ -30,7 +30,7 @@ namespace GeoLib.Data.Repositories
             }
         }
 
-        public IEnumerable<State> Get(bool primaryOnly)
+        public List<State> Get(bool primaryOnly)
         {
             using (GeoLibDbContext geoLibDbContext = new GeoLibDbContext())
             {

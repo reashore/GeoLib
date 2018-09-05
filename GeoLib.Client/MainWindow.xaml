@@ -47,6 +47,15 @@
     </Window.Resources>
     <Grid>
         <TabControl Margin="20" FontSize="18">
+            <TabItem Header="WCF Bindings Settings">
+                <GroupBox Header="Binding Type" Margin="20" Width="300" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <StackPanel Margin="15">
+                        <RadioButton x:Name="NetTcpBindingRadioButton" Content="NetTcp Binding" IsChecked="true" Margin="10"/>
+                        <RadioButton x:Name="BasicHttpBindingRadioButton" Content="BasicHttp Binding" Margin="10"/>
+                        <RadioButton x:Name="WsHttpBindingRadioButton" Content="WsHttp Binding" Margin="10"/>
+                    </StackPanel>
+                </GroupBox>
+            </TabItem>
             <TabItem Header="GeoLib Demo 1">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -74,7 +83,7 @@
                     <TextBox x:Name="StateOutputTextBox" Grid.Row="3" Grid.Column="1" Text="" IsReadOnly="True" Width="300"/>
 
                     <Label Content="Error Message:" Grid.Row="4" Grid.Column="0" />
-                    <TextBox x:Name="ErrorMessage1Label" Text="" Grid.Row="4" Grid.Column="1" Width="400" Height="125" MaxLines="5"/>
+                    <TextBox x:Name="ErrorMessage1TextBox" Text="" Grid.Row="4" Grid.Column="1" Width="400" Height="125" MaxLines="5"/>
 
                     <Button x:Name="GetZipCodeInfoButton" Content="Get Zip Code Info" Grid.Row="5" Grid.Column="1" Width="280" Click="GetZipCodeInfoButton_Click"/>
                 </Grid>
@@ -112,19 +121,10 @@
                     </ListBox>
 
                     <Label Content="Error Message:" Grid.Row="3" Grid.Column="0"/>
-                    <TextBox x:Name="ErrorMessage2TextBlock" Text="" Grid.Row="3" Grid.Column="1" MaxLines="5" Width="400" Height="125" IsReadOnly="True"/>
+                    <TextBox x:Name="ErrorMessage2TextBox" Text="" Grid.Row="3" Grid.Column="1" MaxLines="5" Width="400" Height="125" IsReadOnly="True"/>
 
                     <Button x:Name="GetZipCodesButton" Content="Get Zip Codes" Grid.Row="4" Grid.Column="1" Width="280" Click="GetZipCodesButton_Click"/>
                 </Grid>
-            </TabItem>
-            <TabItem Header="GeoLib Demo 3">
-                <GroupBox Header="Binding Type" Margin="20" Width="300" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top">
-                    <StackPanel Margin="15">
-                        <RadioButton x:Name="NetTcpBindingRadioButton" Content="NetTcp Binding" IsChecked="true" Margin="10"/>
-                        <RadioButton x:Name="BasicHttpBindingRadioButton" Content="BasicHttp Binding" Margin="10"/>
-                        <RadioButton x:Name="WsHttpBindingRadioButton" Content="WsHttp Binding" Margin="10"/>
-                    </StackPanel>
-                </GroupBox>
             </TabItem>
         </TabControl>
     </Grid>

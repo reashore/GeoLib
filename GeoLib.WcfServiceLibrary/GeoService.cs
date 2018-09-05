@@ -38,11 +38,11 @@ namespace GeoLib.WcfServiceLibrary
 
         #endregion
 
-        public IEnumerable<string> GetStates(bool isPrimaryOnly)
+        public List<string> GetStates(bool isPrimaryOnly)
         {
             List<string> stateData = new List<string>();
             IStateRepository stateRepository = _stateRepository ?? new StateRepository();
-            IEnumerable<State> states = stateRepository.Get(isPrimaryOnly);
+            List<State> states = stateRepository.Get(isPrimaryOnly);
 
             // ReSharper disable once InvertIf
             if (states != null)
@@ -76,11 +76,11 @@ namespace GeoLib.WcfServiceLibrary
             return zipCodeData;
         }
 
-        public IEnumerable<ZipCodeData> GetZipCodes(string state)
+        public List<ZipCodeData> GetZipCodes(string state)
         {
             List<ZipCodeData> zipCodeData = new List<ZipCodeData>();
             IZipCodeRepository zipCodeRepository = _zipCodeRepository ?? new ZipCodeRepository();
-            IEnumerable<ZipCode> zipCodes = zipCodeRepository.GetByState(state);
+            List<ZipCode> zipCodes = zipCodeRepository.GetByState(state);
 
             // ReSharper disable once InvertIf
             if (zipCodes != null)
@@ -102,12 +102,12 @@ namespace GeoLib.WcfServiceLibrary
             return zipCodeData;
         }
 
-        public IEnumerable<ZipCodeData> GetZipCodes(string zipCode, int zipCodeRange)
+        public List<ZipCodeData> GetZipCodes(string zipCode, int zipCodeRange)
         {
             List<ZipCodeData> zipCodeData = new List<ZipCodeData>();
             IZipCodeRepository zipCodeRepository = _zipCodeRepository ?? new ZipCodeRepository();
             ZipCode zipCodeEntity = zipCodeRepository.GetByZipCode(zipCode);
-            IEnumerable<ZipCode> zipCodes = zipCodeRepository.GetZipCodesForRange(zipCodeEntity, zipCodeRange);
+            List<ZipCode> zipCodes = zipCodeRepository.GetZipCodesForRange(zipCodeEntity, zipCodeRange);
 
             // ReSharper disable once InvertIf
             if (zipCodes != null)

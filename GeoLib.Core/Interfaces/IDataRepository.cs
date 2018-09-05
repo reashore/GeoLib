@@ -13,7 +13,7 @@ namespace GeoLib.Core.Interfaces
         void Remove(T entity);
         void Remove(int id);
         T Update(T entity);
-        IEnumerable<T> Get();
+        List<T> Get();
         T Get(int id);
     }
 }

@@ -37,17 +37,17 @@ namespace GeoLib.Services
 
         #endregion
 
-        public IEnumerable<string> GetStates(bool isPrimaryOnly)
+        public List<string> GetStates(bool isPrimaryOnly)
         {
             List<string> stateData = new List<string>();
             IStateRepository stateRepository = _stateRepository ?? new StateRepository();
-            IEnumerable<State> states = stateRepository.Get(isPrimaryOnly);
+            List<State> statesList = stateRepository.Get(isPrimaryOnly);
 
             // ReSharper disable once InvertIf
-            if (states != null)
+            if (statesList != null)
             {
                 // ReSharper disable once LoopCanBeConvertedToQuery
-                foreach (State state in states)
+                foreach (State state in statesList)
                 {
                     stateData.Add(state.Abbreviation);
                 }
@@ -80,17 +80,17 @@ namespace GeoLib.Services
             return zipCodeData;
         }
 
-        public IEnumerable<ZipCodeData> GetZipCodes(string state)
+        public List<ZipCodeData> GetZipCodes(string state)
         {
             List<ZipCodeData> zipCodeData = new List<ZipCodeData>();
             IZipCodeRepository zipCodeRepository = _zipCodeRepository ?? new ZipCodeRepository();
-            IEnumerable<ZipCode> zipCodes = zipCodeRepository.GetByState(state);
+            List<ZipCode> zipCodeList = zipCodeRepository.GetByState(state);
 
             // ReSharper disable once InvertIf
-            if (zipCodes != null)
+            if (zipCodeList != null && zipCodeList.Count > 0)
             {
                 // ReSharper disable once LoopCanBeConvertedToQuery
-                foreach (ZipCode zipCode in zipCodes)
+                foreach (ZipCode zipCode in zipCodeList)
                 {
                     ZipCodeData newZipCodeData = new ZipCodeData
                     {
@@ -111,18 +111,18 @@ namespace GeoLib.Services
             return zipCodeData;
         }
 
-        public IEnumerable<ZipCodeData> GetZipCodes(string zipCode, int zipCodeRange)
+        public List<ZipCodeData> GetZipCodes(string zipCode, int zipCodeRange)
         {
             List<ZipCodeData> zipCodeData = new List<ZipCodeData>();
             IZipCodeRepository zipCodeRepository = _zipCodeRepository ?? new ZipCodeRepository();
             ZipCode zipCodeEntity = zipCodeRepository.GetByZipCode(zipCode);
-            IEnumerable<ZipCode> zipCodes = zipCodeRepository.GetZipCodesForRange(zipCodeEntity, zipCodeRange);
+            List<ZipCode> zipCodeList = zipCodeRepository.GetZipCodesForRange(zipCodeEntity, zipCodeRange);
 
             // ReSharper disable once InvertIf
-            if (zipCodes != null)
+            if (zipCodeList != null && zipCodeList.Count > 0)
             {
                 // ReSharper disable once LoopCanBeConvertedToQuery
-                foreach (ZipCode zipCode2 in zipCodes)
+                foreach (ZipCode zipCode2 in zipCodeList)
                 {
                     ZipCodeData newZipCodeData = new ZipCodeData
                     {
@@ -136,7 +136,8 @@ namespace GeoLib.Services
             }
             else
             {
-                throw new FaultException($"Zip code range ({zipCode}, {zipCodeRange}) not found");
+                string message = $"Zip code range ({zipCode}, {zipCodeRange}) not found";
+                throw new FaultException(message);
             }
 
             return zipCodeData;
